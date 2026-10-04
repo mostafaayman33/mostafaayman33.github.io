@@ -472,7 +472,7 @@ html.intro-on,.intro-on body{overflow:hidden}
 .flow a.cue span{animation:cue 3s var(--ease)}
 @keyframes cue{0%{text-shadow:none}25%{color:#fff3dc;text-shadow:0 0 18px rgba(240,194,122,.9),0 0 42px rgba(240,194,122,.45)}100%{text-shadow:none}}
 @media (prefers-reduced-motion:reduce){.flow a.cue span{animation:none}}
-</style><script>try{if('scrollRestoration' in history)history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);if(!matchMedia('(prefers-reduced-data: reduce)').matches){document.documentElement.classList.add('intro-on');setTimeout(function(){if(!window.__lunaIntro)document.documentElement.classList.remove('intro-on')},4000)}}catch(e){}</script></head><body><div class="amb" aria-hidden="true"><div class="leaks"><i class="lk1"></i><i class="lk2"></i><i class="lk3"></i></div><canvas class="dust"></canvas></div><div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Intro from Luna, Mostafa's assistant" data-fx="dark">
+</style><script>(function(){var d=document.documentElement;try{if(!matchMedia('(prefers-reduced-data: reduce)').matches)d.classList.add('intro-on')}catch(e){d.classList.add('intro-on')}try{localStorage.removeItem('luna-intro-seen')}catch(e){}try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}try{if(location.hash)history.replaceState(null,'',location.pathname+location.search)}catch(e){}try{scrollTo(0,0)}catch(e){}setTimeout(function(){if(!window.__lunaIntro)d.classList.remove('intro-on')},8000)})()</script></head><body><div class="amb" aria-hidden="true"><div class="leaks"><i class="lk1"></i><i class="lk2"></i><i class="lk3"></i></div><canvas class="dust"></canvas></div><div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Intro from Luna, Mostafa's assistant" data-fx="dark">
   <div class="leaks" aria-hidden="true"><i class="lk1"></i><i class="lk2"></i><i class="lk3"></i></div>
   <canvas class="dust" aria-hidden="true"></canvas>
   <canvas id="orb-canvas" aria-hidden="true"></canvas>
@@ -950,7 +950,8 @@ html.intro-on,.intro-on body{overflow:hidden}
     $('a[href="#luna"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); open(true); }); });
     window.__lunaBeat = function (t) { mode = 'clock'; clock0 = performance.now() - t * 1000; };   // test hook: jump the timeline
 
-    if (root.classList.contains('intro-on')) open(false); else { intro.classList.add('gone'); Orb().pause(); }
+    var lite = false; try { lite = matchMedia('(prefers-reduced-data: reduce)').matches; } catch (e) {}
+    if (!lite) open(false); else { intro.classList.add('gone'); Orb().pause(); }   // Luna on every visit, even if the head gate missed
   })();
 
   /* ---- the page sits in the same room as the intro: its light leaks and dust, at rest. ~30fps, asleep when hidden. */
